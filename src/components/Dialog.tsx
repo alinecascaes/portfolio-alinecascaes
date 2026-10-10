@@ -1,0 +1,55 @@
+import { useEffect, useRef, type ReactNode } from "react";
+import { X } from "lucide-react";
+
+interface DialogProps {
+  title: string;
+  onClose: () => void;
+  children: ReactNode;
+}
+
+export function Dialog({ title, onClose, children }: DialogProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    dialog.showModal();
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    const handleClose = () => onClose();
+    dialog.addEventListener("close", handleClose);
+
+    return () => {
+      dialog.removeEventListener("close", handleClose);
+      previouslyFocused?.focus();
+    };
+  }, [onClose]);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      onClose={onClose}
+      className="m-auto max-h-[85dvh] w-full max-w-170 rounded-lg border border-border bg-surface p-0 text-text shadow-2xl backdrop:bg-black/60 backdrop:backdrop-blur-sm open:animate-scale-in"
+    >
+      <div className="w-full overflow-y-auto p-[clamp(1.25rem,1rem+1.5vw,2.5rem)]">
+        <header className="mb-4 flex items-start justify-between gap-4">
+          <h3 className="text-[clamp(1.375rem,0.75rem+2vw,2rem)] font-bold leading-tight">
+            {title}
+          </h3>
+          <button
+            type="button"
+            onClick={() => dialogRef.current?.close()}
+            aria-label="Fechar"
+            className="shrink-0 cursor-pointer rounded-md border border-border bg-bg p-2 text-text-muted transition-colors duration-150 hover:border-primary hover:text-primary"
+          >
+            <X size={18} />
+          </button>
+        </header>
+
+        {children}
+      </div>
+    </dialog>
+  );
+}
