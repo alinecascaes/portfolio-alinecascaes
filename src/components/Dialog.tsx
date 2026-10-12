@@ -3,11 +3,17 @@ import { X } from "lucide-react";
 
 interface DialogProps {
   title: string;
-  onClose: () => void;
+  backdropClick?: boolean;
   children: ReactNode;
+  onClose: () => void;
 }
 
-export function Dialog({ title, onClose, children }: DialogProps) {
+export function Dialog({
+  title,
+  onClose,
+  backdropClick = false,
+  children,
+}: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -27,10 +33,17 @@ export function Dialog({ title, onClose, children }: DialogProps) {
     };
   }, [onClose]);
 
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+    if (backdropClick && event.target === dialogRef.current) {
+      dialogRef.current.close();
+    }
+  };
+
   return (
     <dialog
       ref={dialogRef}
       onClose={onClose}
+      onClick={handleBackdropClick}
       className="m-auto max-h-[85dvh] w-full max-w-170 rounded-lg border border-border bg-surface p-0 text-text shadow-2xl backdrop:bg-black/60 backdrop:backdrop-blur-sm open:animate-scale-in"
     >
       <div className="w-full overflow-y-auto p-[clamp(1.25rem,1rem+1.5vw,2.5rem)]">
