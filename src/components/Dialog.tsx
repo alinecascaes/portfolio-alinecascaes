@@ -46,22 +46,27 @@ export function Dialog({
       onClick={handleBackdropClick}
       className="m-auto max-h-[85dvh] w-full max-w-170 rounded-lg border border-border bg-surface p-0 text-text shadow-2xl backdrop:bg-black/60 backdrop:backdrop-blur-sm open:animate-scale-in"
     >
-      <div className="w-full overflow-y-auto p-[clamp(1.25rem,1rem+1.5vw,2.5rem)]">
-        <header className="mb-4 flex items-start justify-between gap-4">
-          <h3 className="text-[clamp(1.375rem,0.75rem+2vw,2rem)] font-bold leading-tight">
-            {title}
-          </h3>
-          <button
-            type="button"
-            onClick={() => dialogRef.current?.close()}
-            aria-label="Fechar"
-            className="shrink-0 cursor-pointer rounded-md border border-border bg-bg p-2 text-text-muted transition-colors duration-150 hover:border-primary hover:text-primary"
-          >
-            <X size={18} />
-          </button>
-        </header>
+      <div className="relative w-full overflow-y-auto p-[clamp(1.25rem,1rem+1.5vw,2.5rem)]">
+        <button
+          type="button"
+          onClick={() => dialogRef.current?.close()}
+          aria-label="Fechar"
+          className="absolute right-[clamp(0.75rem,0.5rem+1.5vw,2rem)] top-[clamp(0.75rem,0.5rem+1.5vw,2rem)] cursor-pointer rounded-md border border-border bg-bg p-2 text-text-muted transition-colors duration-150 hover:border-primary hover:text-primary"
+        >
+          <X size={18} />
+        </button>
 
-        {children}
+        <div className="pr-8">
+          {title && (
+            <header className="mb-4">
+              <h3 className="text-[clamp(1.375rem,0.75rem+2vw,2rem)] font-bold leading-tight">
+                {title}
+              </h3>
+            </header>
+          )}
+
+          {children}
+        </div>
       </div>
     </dialog>
   );

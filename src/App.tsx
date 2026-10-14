@@ -1,4 +1,5 @@
 import { AboutMe } from "./components/AboutMe";
+import { Contact } from "./components/Contact/Contact";
 import { Experience } from "./components/Experience/Experience";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header/Header";
@@ -13,6 +14,7 @@ export function App() {
       <Experience />
       <Projects />
       <Skills />
+      <Contact />
       <Footer />
     </>
   );
