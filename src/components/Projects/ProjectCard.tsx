@@ -17,12 +17,15 @@ export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
           alt={`Imagem do projeto ${project.title}`}
           loading="lazy"
           className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transform-none cursor-pointer"
-					onClick={onOpenDetails}
+          onClick={onOpenDetails}
         />
       </div>
 
       <div className="flex flex-1 flex-col gap-[clamp(0.875rem,0.8rem+0.4vw,1.25rem)] p-[clamp(1rem,0.875rem+0.6vw,1.5rem)]">
-        <h3 className="text-[clamp(1.1rem,0.875rem+0.75vw,1.375rem)] font-semibold leading-snug text-text transition-colors duration-300 group-hover:text-primary">
+        <h3
+          className="text-[clamp(1.1rem,0.875rem+0.75vw,1.375rem)] font-semibold leading-snug text-text transition-colors duration-300 group-hover:text-primary cursor-pointer"
+          onClick={onOpenDetails}
+        >
           {project.title}
         </h3>
 
@@ -75,7 +78,7 @@ export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
             >
               <GitHubIcon fontSize="small" />
               {project.githubName}
-							GitHub
+              GitHub
             </a>
           )}
         </nav>
