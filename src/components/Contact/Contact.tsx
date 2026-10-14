@@ -1,4 +1,5 @@
 import { Wrapper } from "../Wrapper";
+import { Reveal } from "../Reveal";
 import { ContactButton } from "../ContactButton";
 import { contacts } from "../../data/Contacts";
 import { ContactForm } from "./ContactForm";
@@ -11,7 +12,7 @@ export function Contact() {
     >
       <Wrapper className="py-[clamp(4rem,4.5rem+4vw,7rem)]">
         <div className="grid gap-[clamp(2rem,1.5rem+3vw,3.5rem)] lg:grid-cols-2 lg:items-start">
-          <div className="flex flex-col gap-[clamp(1.5rem,1.25rem+1vw,2rem)]">
+          <Reveal className="flex flex-col gap-[clamp(1.5rem,1.25rem+1vw,2rem)]">
             <h2 className="relative w-fit inline-block text-xl font-bold leading-tight text-text after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-11 after:bg-primary after:content-[''] tablet:text-2xl">
               Contato
             </h2>
@@ -23,9 +24,11 @@ export function Contact() {
                 <ContactButton key={contact.label} {...contact} />
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <ContactForm />
+          <Reveal delay={120}>
+            <ContactForm />
+          </Reveal>
         </div>
       </Wrapper>
     </section>

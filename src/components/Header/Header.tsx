@@ -51,7 +51,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-30 bg-bg transition-colors motion-reduce:transition-none">
-      <Wrapper className="flex items-center justify-between">
+      <Wrapper className="flex animate-[fade-up-in_1.2s_cubic-bezier(0.16,1,0.3,1)_both] items-center justify-between">
         <a href="#" className="text-xl font-bold uppercase">
           ac
           <span className="text-primary">.</span>
