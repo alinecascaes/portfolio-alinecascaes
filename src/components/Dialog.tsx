@@ -2,7 +2,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { X } from "lucide-react";
 
 interface DialogProps {
-  title: string;
+  title?: string;
   backdropClick?: boolean;
   children: ReactNode;
   onClose: () => void;
