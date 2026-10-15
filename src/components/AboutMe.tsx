@@ -2,6 +2,8 @@ import { Wrapper } from "./Wrapper";
 import { ContactButton } from "./ContactButton";
 import { contacts } from "../data/Contacts";
 
+import avatarImage from "../assets/avatar.png";
+
 const reveal = "animate-[fade-up-in_1.4s_cubic-bezier(0.16,1,0.3,1)_both]";
 
 export function AboutMe() {
@@ -18,7 +20,7 @@ export function AboutMe() {
               className={`group relative h-32 w-32 overflow-hidden rounded-full [animation-delay:80ms] ${reveal}`}
             >
               <img
-                src="https://github.com/alinecascaes.png"
+                src={avatarImage}
                 alt="Foto de Aline Cascaes"
                 draggable={false}
                 onContextMenu={(event) => event.preventDefault()}
